@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Printer Tracker</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+</head>
+
+<body>
+    <!-- ACCESS GATE -->
+    <div id="access-gate" class="screen">
+        <div class="terminal-box">
+            <h1>SYSTEM LOGIN</h1>
+            <p>Enter Access Code:</p>
+            <input type="password" id="passcode-input" autocomplete="off" autofocus>
+            <button id="btn-login">ENTER</button>
+            <p id="login-error" class="error hidden">ACCESS DENIED.</p>
+        </div>
+    </div>
+
+    <!-- MAIN APP CONTAINER -->
+    <div id="app-container" class="hidden">
+
+        <!-- LIST PAGE -->
+        <div id="list-page" class="screen">
+            <header>
+                <h1>Printer Tracker [List]</h1>
+                <div class="header-actions">
+                    <input type="text" id="search-input" placeholder="Search Project/Part...">
+                    <button id="btn-export">Export</button>
+                    <button id="btn-new">New</button>
+                </div>
+            </header>
+
+            <div class="table-container">
+                <table id="records-table">
+                    <thead>
+                        <tr>
+                            <th data-sort="sn">SN ▼</th>
+                            <th data-sort="date">Date ▼</th>
+                            <th data-sort="projectName">Project ▼</th>
+                            <th data-sort="partName">Part ▼</th>
+                            <th data-sort="costINR">Cost(₹) ▼</th>
+                            <th data-sort="status">Status ▼</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-body">
+                        <!-- Rows rendered via JS -->
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="pagination" class="pagination hidden">
+                <button id="btn-prev">Prev</button>
+                <span id="page-info">Page 1 of 1</span>
+                <button id="btn-next">Next</button>
+            </div>
+        </div>
+
+        <!-- DETAILS PAGE -->
+        <div id="details-page" class="screen hidden">
+            <header>
+                <h1>Printer Tracker [Details]</h1>
+            </header>
+
+            <div class="form-container terminal-box">
+                <form id="details-form">
+                    <input type="hidden" id="field-id">
+
+                    <div class="form-group">
+                        <label>Name of Project *</label>
+                        <input type="text" id="field-project" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Part Name *</label>
+                        <input type="text" id="field-part" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Date *</label>
+                        <input type="date" id="field-date" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Time Taken (hr / min) *</label>
+                        <div class="time-inputs">
+                            <input type="number" id="field-hours" placeholder="hr" min="0" required>
+                            <span>:</span>
+                            <input type="number" id="field-minutes" placeholder="min" min="0" max="59" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Cost ($ USD) *</label>
+                        <input type="number" id="field-cost" step="0.01" min="0" required>
+                        <small id="cost-hint">Will be converted to INR on save.</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Weight (grams) *</label>
+                        <input type="number" id="field-weight" min="0" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Color</label>
+                        <div class="color-inputs">
+                            <input type="color" id="field-color-picker" value="#ffffff">
+                            <input type="text" id="field-color-text" value="#ffffff">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Status</label>
+                        <select id="field-status">
+                            <option value="Waiting">Waiting</option>
+                            <option value="In Progress">In Progress</option>
+                            <option value="Completed">Completed</option>
+                        </select>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="button" id="btn-cancel">Cancel</button>
+                        <button type="submit" id="btn-save">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="app.js"></script>
+</body>
+
+</html>
