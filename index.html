@@ -43,11 +43,11 @@
                     <thead>
                         <tr>
                             <th data-sort="sn">SN ▼</th>
-                            <th data-sort="date">Date ▼</th>
-                            <th data-sort="projectName">Project ▼</th>
-                            <th data-sort="partName">Part ▼</th>
-                            <th data-sort="costINR">Cost(₹) ▼</th>
-                            <th data-sort="status">Status ▼</th>
+                            <th data-sort="date">Date</th>
+                            <th data-sort="projectName">Project</th>
+                            <th data-sort="partName">Part</th>
+                            <th data-sort="costINR">Cost(₹)</th>
+                            <th data-sort="status">Status</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -85,7 +85,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label>Date *</label>
+                        <label>Date (DD/MM/YYYY) *</label>
                         <input type="date" id="field-date" required>
                     </div>
 
@@ -106,7 +106,7 @@
 
                     <div class="form-group">
                         <label>Weight (grams) *</label>
-                        <input type="number" id="field-weight" min="0" required>
+                        <input type="number" id="field-weight" step="any" min="0" inputmode="decimal" required>
                     </div>
 
                     <div class="form-group">
